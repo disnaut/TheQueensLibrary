@@ -1,0 +1,26 @@
+This is where I will keep my notes from this point onward.
+
+What I want ServerInit to do:
+  1. Download the hash file for the database we are using
+      NOTE: If I download and check the hash, I can determine if the database was updated or not.
+  2. Check to see if the database exists, download if it doesn't
+  3. Check the hash between the hashfile that was downloaded,
+     and the hash calculated from the downloaded file.
+  4. Check to see if certain tables exist within the database downloaded, create if they are not present.
+
+
+What do I need to test:
+
+  1. Download the hash file for the database we are using
+    1.1 Does this file exist?
+    1.2 Can we download the file?
+  2. Check to see if the database exists, download if it doesn't
+    2.1 Does this file exist?
+    2.2 Can we download the file?
+    2.3 Is this the right file?
+  3. Check the hash between the hashfile that was downloaded,
+     and the hash calculated from the downloaded file.
+
+
+need function that takes in a string to determine if a file exists
+need a function that will download a file based on a passed in string
