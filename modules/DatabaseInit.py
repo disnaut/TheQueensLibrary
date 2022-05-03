@@ -35,6 +35,8 @@ def CalculateHash(strFileName):
     f.close()
     return strHash
 
+## TODO: Fix where these files are downloaded, and determine how to keep the
+##       pwd in the root of this project.
 def main():
     blnNewDatabase = False
     #Download the hash file, keep the name

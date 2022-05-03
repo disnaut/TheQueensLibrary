@@ -5,7 +5,7 @@ import time
 #This is to make sure that the modules are imported correctly.
 #This directly modifies your python path. This may have to be
 #changed because of security.
-os.chdir(os.path.dirname(os.getcwd()))
+os.chdir(os.path.dirname(os.getcwd())) #
 sys.path.insert(1, os.getcwd() + '/modules')
 from DatabaseInit import *
 
