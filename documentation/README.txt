@@ -1,0 +1,1 @@
+This folder serves to house any documentation for this project. It will include things like PDFs of Schema, Developer Help, etc.
