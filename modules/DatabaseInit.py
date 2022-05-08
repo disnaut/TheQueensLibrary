@@ -4,6 +4,8 @@ import requests
 import hashlib
 import sqlite3
 
+# TODO: Add data validation that will throw exceptions based on what is thrown
+
 def FileExists(strFileName):
     return exists(os.getcwd() + '/' + strFileName)
 
@@ -35,6 +37,15 @@ def CalculateHash(strFileName):
         strHash = hashlib.sha256(bytes).hexdigest()
     f.close()
     return strHash
+
+def UserSchemaExists(sqlDatabase):
+    return False
+
+def InitUserSchema(sqlDatabase):
+    return False
+
+def CopyUserSchema(sqlOldDatabase, sqlUserDatabase):
+    return False
 
 ## TODO: Fix where these files are downloaded, and determine how to keep the
 ##       pwd in the root of this project.

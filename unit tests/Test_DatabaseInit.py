@@ -14,7 +14,7 @@ def BeforeTest():
     #The insanity below is because windows likes to open files again for an arbitary reason,
     #even after you have closed them for a given duration.
     #Please leave this alone until I can find a more elegant solution
-    # - Damien
+    # - Disnaut
     while(os.path.exists(os.getcwd() + '/' + 'MTG_Database.sqlite.sha256') or os.path.exists(os.getcwd() + '/' + 'MTG_Database.sqlite')):
         time.sleep(2)
         try:
@@ -50,3 +50,13 @@ def test_HashFile_Compared_To_Database_Hash():
 
 def test_HashFile_Compared_To_Other_File():
     assert HashCompare('Test.txt') == False
+
+def test_User_Schema_Does_Not_Exist():
+    assert True
+
+def test_User_Schema_Exist():
+    assert True
+
+# This will be a little wonkey given what this is meant to test
+def test_Table_Copy():
+    assert True
