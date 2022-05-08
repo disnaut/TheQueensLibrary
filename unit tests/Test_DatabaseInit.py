@@ -39,7 +39,6 @@ def test_HashFile_Download():
 def test_Database_Download():
     assert DownloadFile('https://mtgjson.com/api/v5/AllPrintings.sqlite', 'MTG_Database.sqlite') == True
 
-
 def test_HashFile_Exists():
     assert FileExists('MTG_Database.sqlite.sha256') == True
 

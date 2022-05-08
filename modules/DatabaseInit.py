@@ -2,6 +2,7 @@ from os.path import exists, dirname
 import os
 import requests
 import hashlib
+import sqlite3
 
 def FileExists(strFileName):
     return exists(os.getcwd() + '/' + strFileName)
@@ -37,6 +38,8 @@ def CalculateHash(strFileName):
 
 ## TODO: Fix where these files are downloaded, and determine how to keep the
 ##       pwd in the root of this project.
+
+# Quick and dirty fix: Run a module after this that moves the files in question. (sub optimal)
 def main():
     blnNewDatabase = False
     #Download the hash file, keep the name
@@ -52,7 +55,8 @@ def main():
             os.rename('AllPrintings.sqlite.sha256', 'MTG_Database.sqlite.sha256')
             blnNewDatabase = True
 
-    #If the file does not exist, or
+    #If the file does not exist, or there is a new database, download and overwrite the old database
+    ## TODO: Develop a solution to losing user data when this download is occuring
     if FileExists('MTG_Database.sqlite') == False or blnNewDatabase:
         DownloadFile('https://mtgjson.com/api/v5/AllPrintings.sqlite', 'MTG_Database.sqlite')
 
