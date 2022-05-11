@@ -38,13 +38,30 @@ def CalculateHash(strFileName):
     f.close()
     return strHash
 
-def UserSchemaExists(sqlDatabase):
-    return False
+def DeckTableExists(sqlDatabase):
+    #include something to check for if there is more than one row. if there is more than one, there is a problem.
+    sqlCursor = sqlDatabase.cursor()
+    sqlCursor.execute('''SELECT EXISTS ( SELECT name FROM sqlite_schema WHERE type = 'table' AND name = 'Decks')''')
+    sqlTuple = cur.fetchone()
+    return sqlTuple[0];
 
-def InitUserSchema(sqlDatabase):
-    return False
+def CardsInDeckTableExists(sqlDatabase):
+    sqlCursor = sqlDatabase.cursor()
+    sqlCursor.execute('''SELECT EXISTS ( SELECT name FROM sqlite_schema WHERE type = 'table' AND name = 'CardsInDeck')''')
+    sqlTuple = cur.fetchone()
+    return sqlTuple[0];
+
+def InitUserSchema(sqlDatabase, intDeck, intCardsInDeck):
+    sqlCursor = sqlDatabase.cursor()
+    if inDeck == 0:
+        sqlCursor.execute('''CREATE TABLE Deck(intDeckID INT PRIMARY KEY NOT NULL,  strDeckName TEXT NOT NULL, strFormat TEXT NOT NULL)''')
+        sqlCursor.commit()
+    if intCardsInDeck == 0:
+        sqlCursor.execute('''CREATE TABLE Deck(intCardID INT PRIMARY KEY NOT NULL,  intDeckID INT NOT NULL, foreign key (intDeckID) references Decks (intDeckID) intNumOf INT NOT NULL)''')
+        sqlCursor.commit()
 
 def CopyUserSchema(sqlOldDatabase, sqlUserDatabase):
+    print("Under Construction.")
     return False
 
 ## TODO: Fix where these files are downloaded, and determine how to keep the
@@ -71,4 +88,11 @@ def main():
     if FileExists('MTG_Database.sqlite') == False or blnNewDatabase:
         DownloadFile('https://mtgjson.com/api/v5/AllPrintings.sqlite', 'MTG_Database.sqlite')
 
+    #Create a sqlite connection to the datbase
+    sqlDatabase = sqlite3.connect('MTG_Database.sqlite')
+
+    #Check if tables exist
+    intDeckExists = DeckTableExists(sqlDatabase)
+    intCardsInDeckExists = CardsInDeckTableExists(sqlDatabase)
+    InitUserSchema(sqlDatabase, intDeckExists, intCardsInDeck)
 main()

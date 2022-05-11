@@ -6,3 +6,7 @@ modules/MTG_Database.sqlite.sha256
 MTG_Database.sqlite
 
 MTG_Database.sqlite.sha256
+
+*.exe
+
+notes.txt
